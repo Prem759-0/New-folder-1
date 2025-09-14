@@ -63,23 +63,26 @@ function Dashboard() {
       {channel ? (
         <Channel>
           <Window>
-            <div className="flex items-center justify-between">
-              {channel.data?.member_count === 1 ? (
-                <ChannelHeader title="Everyone else has left this chat!" />
-              ) : (
-                <ChannelHeader />
-              )}
+            <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3 lg:gap-4 p-2 sm:p-4">
+              <div className="flex-1 min-w-0">
+                {channel.data?.member_count === 1 ? (
+                  <ChannelHeader title="Everyone else has left this chat!" />
+                ) : (
+                  <ChannelHeader />
+                )}
+              </div>
 
-              <div className="flex items-center gap-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-2 w-full sm:w-auto lg:w-auto">
                 <Button 
                   variant="outline" 
                   onClick={handleCall}
                   disabled={isStartingCall}
+                  className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base min-w-[120px] sm:min-w-[140px]"
                 >
                   {isStartingCall ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
                   ) : (
-                    <VideoIcon className="w-4 h-4" />
+                    <VideoIcon className="w-4 h-4 mr-2" />
                   )}
                   {isStartingCall ? "Starting..." : "Video Call"}
                 </Button>
@@ -88,12 +91,12 @@ function Dashboard() {
                   variant="outline"
                   onClick={handleLeaveChat}
                   disabled={isLeavingChat}
-                  className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950 disabled:opacity-50"
+                  className="w-full sm:w-auto px-4 py-2 text-sm sm:text-base min-w-[120px] sm:min-w-[140px] text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950 disabled:opacity-50"
                 >
                   {isLeavingChat ? (
-                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
                   ) : (
-                    <LogOutIcon className="w-4 h-4" />
+                    <LogOutIcon className="w-4 h-4 mr-2" />
                   )}
                   {isLeavingChat ? "Leaving..." : "Leave Chat"}
                 </Button>
