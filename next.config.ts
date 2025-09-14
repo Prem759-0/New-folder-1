@@ -10,6 +10,26 @@ const nextConfig: NextConfig = {
       }
     ]
   },
+  // Configure for Replit proxy environment
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN',
+          },
+        ],
+      },
+    ]
+  },
+  // Allow all hosts for Replit proxy environment
+  async rewrites() {
+    return []
+  },
+  // Configure external packages for server components
+  serverExternalPackages: [],
   // Configure for production deployment compatibility
   eslint: {
     ignoreDuringBuilds: false,

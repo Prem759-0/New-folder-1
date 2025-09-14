@@ -2,11 +2,15 @@
   "name": "telegram-youtube-clone",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "dev": "next dev --port 5000 --hostname 0.0.0.0 & npx convex dev",
     "build": "next build",
     "start": "next start --port 5000 --hostname 0.0.0.0",
-    "lint": "eslint"
+    "lint": "eslint",
+    "vercel-build": "next build"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.31.9",

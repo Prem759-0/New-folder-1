@@ -2,8 +2,10 @@
 
 import { Button } from "@/components/ui/button";
 import { useSidebar } from "@/components/ui/sidebar";
-import { LogOutIcon, VideoIcon } from "lucide-react";
+import { LogOutIcon, VideoIcon, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation"; 
+import { useUser } from "@clerk/nextjs";
+import { useState } from "react";
 import {
   Channel,
   Window,
@@ -15,32 +17,44 @@ import {
 } from "stream-chat-react";
 
 function Dashboard() {
-  // ⚡️ Removed unused `user` to fix ESLint warning
+  const { user } = useUser();
   const router = useRouter();
   const { channel, setActiveChannel } = useChatContext();
   const { setOpen } = useSidebar();
+  const [isLeavingChat, setIsLeavingChat] = useState(false);
+  const [isStartingCall, setIsStartingCall] = useState(false);
 
-  const handleCall = () => {
+  const handleCall = async () => {
     if (!channel) return;
-    router.push(`/dashboard/video-call/${channel.id}`);
-    setOpen(false);
+    
+    setIsStartingCall(true);
+    try {
+      router.push(`/dashboard/video-call/${channel.id}`);
+      setOpen(false);
+    } finally {
+      setIsStartingCall(false);
+    }
   };
 
   const handleLeaveChat = async () => {
-    if (!channel) return;
+    if (!channel || !user?.id) return;
 
     const confirmLeave = window.confirm("Are you sure you want to leave the chat?");
     if (!confirmLeave) return;
 
+    setIsLeavingChat(true);
     try {
-      // In real app, also remove current userId from channel
-      await channel.removeMembers([]);
+      // Remove current user from channel
+      await channel.removeMembers([user.id]);
 
       setActiveChannel(undefined);
 
       router.push("/dashboard");
     } catch (error) {
       console.error("Error leaving chat", error);
+      alert("Failed to leave chat. Please try again.");
+    } finally {
+      setIsLeavingChat(false);
     }
   };
 
@@ -57,18 +71,31 @@ function Dashboard() {
               )}
 
               <div className="flex items-center gap-2">
-                <Button variant="outline" onClick={handleCall}>
-                  <VideoIcon className="w-4 h-4" />
-                  Video Call
+                <Button 
+                  variant="outline" 
+                  onClick={handleCall}
+                  disabled={isStartingCall}
+                >
+                  {isStartingCall ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <VideoIcon className="w-4 h-4" />
+                  )}
+                  {isStartingCall ? "Starting..." : "Video Call"}
                 </Button>
 
                 <Button
                   variant="outline"
                   onClick={handleLeaveChat}
-                  className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950"
+                  disabled={isLeavingChat}
+                  className="text-red-500 hover:text-red-600 hover:bg-red-50 dark:hover:bg-red-950 disabled:opacity-50"
                 >
-                  <LogOutIcon className="w-4 h-4" />
-                  Leave Chat
+                  {isLeavingChat ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <LogOutIcon className="w-4 h-4" />
+                  )}
+                  {isLeavingChat ? "Leaving..." : "Leave Chat"}
                 </Button>
               </div>
             </div>
