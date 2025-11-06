@@ -13,9 +13,13 @@ pnpm dev
 # or
 bun dev
 ```
-second run 
-npx convex dev
 
+second run 
+```bash
+npx convex dev
+```
+
+```bash
 .env.local
 NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
 CLERK_SECRET_KEY=
@@ -24,6 +28,7 @@ NEXT_PUBLIC_CONVEX_URL=
 CLERK_JWT_ISSUER_DOMAIN=
 NEXT_PUBLIC_STREAM_API_KEY=
 STREAM_API_SECRET_KEY=
+```
 
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
