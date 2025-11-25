@@ -142,7 +142,7 @@ export default function Home() {
 
     <p className="text-sm sm:text-base md:text-lg lg:text-xl text-gray-600 mb-6 sm:mb-8 md:mb-10 max-w-xl mx-auto px-2 sm:px-4 md:px-0">
       Join thousands of users who&apos;ve already discovered a better way to communicate. 
-      Start your journey with Beam today — it&apos;s completely free.
+      Start your journey with TeleChat today — it&apos;s completely free.
     </p>
 
     {/* CTA Button */}
@@ -182,7 +182,7 @@ export default function Home() {
       <div className="flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-6 md:gap-8">
         {/* Brand */}
         <div className="text-center sm:text-left">
-          <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-gray-900">Beam</span>
+          <span className="text-base sm:text-lg md:text-xl font-bold tracking-tight text-gray-900">TeleChat</span>
           <p className="text-xs sm:text-sm md:text-base text-gray-500 mt-1">
             The future of communication
           </p>
@@ -205,7 +205,7 @@ export default function Home() {
       {/* Bottom Note */}
       <div className="border-t mt-6 sm:mt-8 pt-4 sm:pt-6 text-center">
         <p className="text-xs sm:text-sm text-gray-400 mb-2 sm:mb-3 max-w-4xl mx-auto px-2 sm:px-4 md:px-0">
-          2025 Beam. This is a Demo. We have no affiliation with any of the brands mentioned in the video including Beam, any usage is purely educational. In the event of any infringement, please contact us and we will remove/alter the content immediately.
+          2025 TeleChat. This is a Demo. We have no affiliation with any of the brands mentioned in the video including Beam, any usage is purely educational. In the event of any infringement, please contact us and we will remove/alter the content immediately.
         </p>
         <p className="text-xs sm:text-sm font-medium text-gray-600">❤️ Made By Prem . Gaikwad ❤️</p>
       </div>
