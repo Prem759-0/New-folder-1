@@ -33,7 +33,7 @@ function Layout({children}:{children: React.ReactNode}) {
 
           <Link href="/dashboard">
           <h1 className="text-lg font-bold tracking-wider uppercase">
-            Beam
+            TeleChat
           </h1>
           </Link>
       
