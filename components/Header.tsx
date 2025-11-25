@@ -10,7 +10,7 @@ function Header() { const pathname = usePathname();
     return ( 
     <header className="flex items-center justify-between px-4 h-16 sm:px-6"> 
     <Link href="/dashboard" className="font-medium uppercase tracking-widest"> 
-    Beam 
+    TeleChat
     </Link> 
     <div className="flex items-center gap-2"> 
         <Authenticated> 
